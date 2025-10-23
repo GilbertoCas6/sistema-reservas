@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrarse | Barbería Pro</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1b1b1b 50%, #2b2b2b 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+        }
+
+        .register-container {
+            background: rgba(15, 15, 15, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.08);
+            padding: 40px 50px;
+            width: 400px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .logo span {
+            color: #d4af37;
+        }
+
+        h1 {
+            color: #d4af37;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        p.subtitle {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 35px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: none;
+            outline: none;
+            background: #1f1f1f;
+            color: #fff;
+            border-radius: 8px;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
+            background: #262626;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #d4af37, #b58b2e);
+            border: none;
+            border-radius: 8px;
+            color: #111;
+            font-weight: 700;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #e0bd50, #c19532);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+            transform: translateY(-1px);
+        }
+
+        a {
+            color: #d4af37;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 18px;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #f5d67b;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85em;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <div class="logo"><span>Barber</span>Pro</div>
+    <h1>Crear Cuenta</h1>
+    <p class="subtitle">Únete a la barbería más exclusiva 💈</p>
+
+    <form th:action="@{/registro}" th:object="${usuario}" method="post">
+        <input type="text" th:field="*{username}" placeholder="Nombre de usuario" required>
+        <input type="password" th:field="*{password}" placeholder="Contraseña" required>
+        <button type="submit">Registrarme</button>
+    </form>
+
+    <a th:href="@{/login}">¿Ya tienes cuenta? Inicia sesión</a>
+</div>
+
+<footer>© 2025 Barbería Pro — Todos los derechos reservados</footer>
+
+</body>
+</html>

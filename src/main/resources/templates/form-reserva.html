@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${reserva.id_reserva != null} ? 'Editar Reserva' : 'Nueva Reserva'"></title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header>
+    <h1 th:text="${reserva.id_reserva != null} ? 'Editar Reserva' : 'Registrar Reserva'"></h1>
+</header>
+
+<main class="form-container">
+    <form th:action="@{/reservas/guardar}" method="post" th:object="${reserva}">
+        <input type="hidden" th:field="*{id_reserva}">
+
+        <div class="form-group">
+            <label>Fecha:</label>
+            <input type="date" th:field="*{fecha}" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Hora:</label>
+            <input type="number" th:field="*{hora}" min="8" max="20" placeholder="Ej: 14 (para 2 PM)" required>
+        </div>
+
+        <div class="form-group">
+            <label>Servicio:</label>
+            <input type="text" th:field="*{servicio}" placeholder="Corte, barba, ceja..." required>
+        </div>
+
+        <div class="form-group">
+            <label>Cliente:</label>
+            <input type="text" th:field="*{cliente}" placeholder="Nombre del cliente" required>
+        </div>
+
+        <div class="form-group">
+            <label>Estado:</label>
+            <select th:field="*{estado}">
+                <option value="Pendiente">Pendiente</option>
+                <option value="Confirmada">Confirmada</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+        </div>
+
+        <div class="btn-container">
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a th:href="@{/reservas}" class="btn btn-danger">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+<footer>
+    <p>Sistema de reservas - Barbería © 2025</p>
+</footer>
+
+</body>
+</html>

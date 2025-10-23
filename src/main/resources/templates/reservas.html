@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservas - Barbería</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1b1b1b, #3b3b3b);
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 60px auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            text-align: center;
+            color: #f7c873;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            text-align: center;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #f7c873;
+            color: #1b1b1b;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            text-decoration: none;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .btn-edit {
+            background-color: #4CAF50;
+        }
+
+        .btn-edit:hover {
+            background-color: #45a049;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        .btn-add {
+            display: block;
+            text-align: center;
+            background: linear-gradient(90deg, #f7c873, #e0a84b);
+            color: #1b1b1b;
+            font-weight: bold;
+            padding: 12px 0;
+            width: 200px;
+            margin: 20px auto;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .btn-add:hover {
+            background: linear-gradient(90deg, #ffd77d, #f7c873);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Listado de Reservas</h1>
+
+    <a th:href="@{/reservas/nueva}" class="btn-add">+ Nueva Reserva</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Servicio</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reserva : ${reservas}">
+            <td th:text="${reserva.id_reserva}"></td>
+            <td th:text="${reserva.fecha}"></td>
+            <td th:text="${reserva.hora}"></td>
+            <td th:text="${reserva.servicio}"></td>
+            <td th:text="${reserva.cliente}"></td>
+            <td th:text="${reserva.estado}"></td>
+            <td>
+                <a th:href="@{'/reservas/editar/' + ${reserva.id_reserva}}" class="btn btn-edit">Editar</a>
+                <a th:href="@{'/reservas/eliminar/' + ${reserva.id_reserva}}" class="btn btn-delete"
+                   onclick="return confirm('¿Seguro que deseas eliminar esta reserva?')">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
