@@ -1,6 +1,9 @@
 # Usa una imagen de Java 21 (o la versión que uses)
 FROM eclipse-temurin:21-jdk
 
+# Instala Maven (Render no lo trae por defecto)
+RUN apt-get update && apt-get install -y maven
+
 # Crea el directorio de trabajo
 WORKDIR /app
 
@@ -14,7 +17,7 @@ COPY src ./src
 # Empaqueta la aplicación (genera el .jar)
 RUN mvn clean package -DskipTests
 
-# Expón el puerto
+# Expón el puerto (Render usa este valor)
 EXPOSE 8080
 
 # Ejecuta el .jar
